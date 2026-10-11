@@ -16,7 +16,17 @@
 
 DEVICE_PACKAGE_OVERLAYS += \
     $(LOCAL_PATH)/overlay \
-    $(LOCAL_PATH)/overlay-lineage
+    $(LOCAL_PATH)/overlay-lineage \
+    $(LOCAL_PATH)/overlay-ims
+
+# Krazey IMS stack (Android 17)
+PRODUCT_PACKAGES += \
+    ImsStack \
+    Iwlan \
+    QualifiedNetworksService
+
+$(call inherit-product, packages/modules/ImsMedia/imsmedia.mk)
+$(call inherit-product, packages/apps/CarrierSettings/carrier_settings.mk)
 
 # call the common setup
 $(call inherit-product, device/samsung/sm8250-common/common.mk)
